@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevInsight – Accessible Blog &amp; Information Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =====================================================
+       SKIP LINK
+       Becomes visible on keyboard focus so users can jump
+       past the header directly to main content.
+       ===================================================== -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+  <header class="header" role="banner">
+    <div class="container header__inner">
+
+      <!-- Logo -->
+      <a href="#home" class="logo" aria-label="DevInsight – home">
+        Dev<span aria-hidden="true">Insight</span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="nav" id="primary-nav" aria-label="Primary navigation">
+        <ul class="nav__list" role="list">
+          <li><a class="nav__link" href="#home">Home</a></li>
+          <li><a class="nav__link" href="#articles">Articles</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Hamburger button (visible on mobile) -->
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+      >
+        <!-- Three bars drawn with spans so no text content is needed -->
+        <span class="hamburger__bar" aria-hidden="true"></span>
+        <span class="hamburger__bar" aria-hidden="true"></span>
+        <span class="hamburger__bar" aria-hidden="true"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile navigation menu (hidden by default) -->
+    <nav
+      class="mobile-menu"
+      id="mobile-menu"
+      aria-label="Mobile navigation"
+      hidden
+    >
+      <ul class="mobile-menu__list" role="list">
+        <li><a class="mobile-menu__link" href="#home">Home</a></li>
+        <li><a class="mobile-menu__link" href="#articles">Articles</a></li>
+        <li><a class="mobile-menu__link" href="#about">About</a></li>
+        <li><a class="mobile-menu__link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- =====================================================
+       MAIN CONTENT
+       id="main-content" is the skip-link target
+       ===================================================== -->
+  <main id="main-content">
+
+    <!-- ===== HERO / SEARCH SECTION ===== -->
+    <section class="hero" id="home" aria-labelledby="hero-heading">
+      <div class="container hero__inner">
+
+        <div class="hero__text">
+          <h1 class="hero__heading" id="hero-heading">
+            Ideas Worth Reading
+          </h1>
+          <p class="hero__description">
+            DevInsight is a community blog for developers. Explore articles on
+            web development, accessibility, and modern frontend practices.
+          </p>
+        </div>
+
+        <!-- Search form -->
+        <div class="hero__search">
+          <form
+            class="search-form"
+            role="search"
+            aria-label="Search articles"
+            onsubmit="return false"
+          >
+            <!-- Visible label — not placeholder-only -->
+            <label class="search-form__label" for="search">
+              Search articles
+            </label>
+            <div class="search-form__row">
+              <input
+                class="search-form__input"
+                type="search"
+                id="search"
+                name="search"
+                placeholder="e.g. accessibility, CSS, JavaScript…"
+                autocomplete="off"
+                aria-describedby="search-hint"
+              />
+              <button class="btn btn--primary search-form__btn" type="submit" id="search-btn">
+                Search
+              </button>
+            </div>
+            <p class="search-form__hint" id="search-hint">
+              Type a keyword and press Search or Enter.
+            </p>
+          </form>
+
+          <!-- Live region: announces search results to screen readers -->
+          <p
+            class="search-status"
+            id="search-status"
+            aria-live="polite"
+            aria-atomic="true"
+          ></p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== ARTICLES SECTION ===== -->
+    <section class="articles-section" id="articles" aria-labelledby="articles-heading">
+      <div class="container">
+
+        <h2 class="section__heading" id="articles-heading">Latest Articles</h2>
+        <p class="section__subheading">Stay up to date with the newest posts from our community.</p>
+
+        <!-- Article grid -->
+        <div class="articles-grid" id="articles-grid">
+
+          <!-- Article 1 -->
+          <article
+            class="article-card"
+            data-tags="accessibility html aria wcag screen reader"
+            aria-label="Article: Building Accessible Web Experiences"
+          >
+            <!-- Decorative colour block instead of a real image -->
+            <div class="article-card__img" aria-hidden="true" style="background:#c7d2fe;">
+              <span aria-hidden="true" style="font-size:2.5rem;">♿</span>
+            </div>
+            <div class="article-card__body">
+              <h3 class="article-card__title">Building Accessible Web Experiences</h3>
+              <p class="article-card__desc">
+                Web accessibility ensures that people with disabilities can perceive,
+                understand, navigate, and interact with the web. This guide covers
+                semantic HTML, ARIA, keyboard navigation, and colour contrast.
+              </p>
+              <a
+                class="article-card__link"
+                href="#articles"
+                aria-label="Read more about Building Accessible Web Experiences"
+              >Read more <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article
+            class="article-card"
+            data-tags="css flexbox grid layout responsive design"
+            aria-label="Article: Modern CSS Layout Techniques"
+          >
+            <div class="article-card__img" aria-hidden="true" style="background:#bbf7d0;">
+              <span aria-hidden="true" style="font-size:2.5rem;">🎨</span>
+            </div>
+            <div class="article-card__body">
+              <h3 class="article-card__title">Modern CSS Layout Techniques</h3>
+              <p class="article-card__desc">
+                CSS Grid and Flexbox have transformed how we build layouts. Learn
+                when to use each, how to combine them, and best practices for
+                creating responsive, maintainable stylesheets without a framework.
+              </p>
+              <a
+                class="article-card__link"
+                href="#articles"
+                aria-label="Read more about Modern CSS Layout Techniques"
+              >Read more <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article
+            class="article-card"
+            data-tags="javascript dom events async fetch api vanilla"
+            aria-label="Article: Vanilla JavaScript DOM Manipulation Guide"
+          >
+            <div class="article-card__img" aria-hidden="true" style="background:#fef08a;">
+              <span aria-hidden="true" style="font-size:2.5rem;">⚡</span>
+            </div>
+            <div class="article-card__body">
+              <h3 class="article-card__title">Vanilla JavaScript DOM Manipulation Guide</h3>
+              <p class="article-card__desc">
+                Before reaching for a framework, master the DOM. This article walks
+                through querySelector, event listeners, class toggling, and dynamic
+                content updates — everything you need for interactive web pages.
+              </p>
+              <a
+                class="article-card__link"
+                href="#articles"
+                aria-label="Read more about Vanilla JavaScript DOM Manipulation Guide"
+              >Read more <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+
+        </div><!-- /articles-grid -->
+
+        <!-- "No results" message (hidden by default) -->
+        <p class="no-results" id="no-results" hidden>
+          😕 No articles matched your search. Try a different keyword.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about-section" id="about" aria-labelledby="about-heading">
+      <div class="container about__inner">
+
+        <div class="about__content">
+          <h2 class="section__heading" id="about-heading">About DevInsight</h2>
+          <p class="about__text">
+            DevInsight is an open, community-driven blog that publishes practical
+            articles on front-end development, web accessibility, and UX best
+            practices. Every article is written with beginners in mind and reviewed
+            for accuracy and clarity.
+          </p>
+          <p class="about__text">
+            Our mission is simple: make technical knowledge approachable for
+            everyone, regardless of experience level. We believe the web should
+            be open, fast, and accessible to all people.
+          </p>
+        </div>
+
+        <!-- Aside: quick facts (semantic aside inside section) -->
+        <aside class="about__aside" aria-label="Quick facts about DevInsight">
+          <h3 class="about__aside-heading">Quick Facts</h3>
+          <ul class="about__facts" role="list">
+            <li>📅 Publishing since 2024</li>
+            <li>✍️  50+ articles published</li>
+            <li>🌐 Read in 30+ countries</li>
+            <li>♿ Accessibility-first approach</li>
+          </ul>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
+      <div class="container contact__inner">
+        <h2 class="section__heading contact__heading" id="contact-heading">Get in Touch</h2>
+        <p class="contact__text">
+          Have an article idea or want to collaborate? We'd love to hear from you.
+        </p>
+        <address class="contact__details">
+          <p>
+            <strong>Email:</strong>
+            <a class="contact__link" href="mailto:hello@devinsight.io">hello@devinsight.io</a>
+          </p>
+          <p>
+            <strong>Twitter:</strong>
+            <a class="contact__link" href="#contact" aria-label="DevInsight on Twitter">@DevInsight</a>
+          </p>
+        </address>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+
+      <a class="logo logo--light" href="#home" aria-label="DevInsight – home">
+        Dev<span aria-hidden="true">Insight</span>
+      </a>
+
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a class="footer__link" href="#home">Home</a>
+        <a class="footer__link" href="#articles">Articles</a>
+        <a class="footer__link" href="#about">About</a>
+        <a class="footer__link" href="#contact">Contact</a>
+      </nav>
+
+      <p class="footer__copy">
+        &copy; 2026 DevInsight. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
