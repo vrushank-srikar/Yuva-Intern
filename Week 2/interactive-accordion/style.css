@@ -1,0 +1,261 @@
+/* =============================================
+   CSS Variables
+   ============================================= */
+:root {
+  --clr-primary:      #4f46e5;
+  --clr-primary-light:#eef2ff;
+  --clr-primary-dark: #4338ca;
+  --clr-text:         #1e293b;
+  --clr-text-light:   #64748b;
+  --clr-bg:           #f8fafc;
+  --clr-white:        #ffffff;
+  --clr-border:       #e2e8f0;
+  --clr-icon-open:    #4f46e5;
+  --clr-shadow:       rgba(79, 70, 229, 0.10);
+
+  --radius:           0.75rem;
+  --transition:       0.3s ease;
+  --max-width:        700px;
+
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+}
+
+/* =============================================
+   Reset & Base
+   ============================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   Page Layout
+   ============================================= */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-lg) var(--space-md);
+}
+
+/* =============================================
+   Page Header
+   ============================================= */
+.page-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  max-width: var(--max-width);
+  width: 100%;
+}
+
+.page-header__title {
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 800;
+  color: var(--clr-text);
+  margin-bottom: var(--space-xs);
+}
+
+.page-header__subtitle {
+  font-size: 1rem;
+  color: var(--clr-text-light);
+}
+
+/* =============================================
+   Accordion Container
+   ============================================= */
+.accordion {
+  width: 100%;
+  max-width: var(--max-width);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* =============================================
+   Accordion Item (card)
+   ============================================= */
+.accordion__item {
+  background: var(--clr-white);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--clr-shadow);
+  overflow: hidden; /* keeps rounded corners on open */
+  transition: box-shadow var(--transition);
+}
+
+/* Lift card slightly when active (open) */
+.accordion__item.is-open {
+  border-color: var(--clr-primary);
+  box-shadow: 0 4px 20px var(--clr-shadow);
+}
+
+/* =============================================
+   Accordion Heading (semantic wrapper)
+   ============================================= */
+.accordion__heading {
+  /* Reset h2 margin */
+  margin: 0;
+}
+
+/* =============================================
+   Accordion Trigger (button)
+   ============================================= */
+.accordion__trigger {
+  /* Reset button styles */
+  appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-md);
+  gap: var(--space-sm);
+
+  /* Text */
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-text);
+  text-align: left;
+
+  /* Hover / transition */
+  transition: background var(--transition), color var(--transition);
+  border-radius: var(--radius);
+}
+
+.accordion__trigger:hover {
+  background: var(--clr-primary-light);
+  color: var(--clr-primary);
+}
+
+/* Highlight trigger when item is open */
+.accordion__item.is-open .accordion__trigger {
+  background: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border-radius: var(--radius) var(--radius) 0 0; /* keep top corners */
+}
+
+/* ===== Focus Style (keyboard nav) ===== */
+.accordion__trigger:focus-visible {
+  outline: 3px solid var(--clr-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+/* =============================================
+   Plus / Minus Icon
+   ============================================= */
+.accordion__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--clr-primary-light);
+  color: var(--clr-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+
+  /* Rotate animation for icon */
+  transition: transform var(--transition), background var(--transition);
+  user-select: none;
+}
+
+/* When open: rotate the icon (plus → still shows −, but rotation is a visual cue) */
+.accordion__item.is-open .accordion__icon {
+  transform: rotate(45deg);
+  background: var(--clr-primary);
+  color: var(--clr-white);
+}
+
+/* =============================================
+   Accordion Body (collapsible panel)
+   ============================================= */
+.accordion__body {
+  /* Height animation using max-height trick */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition), padding var(--transition);
+
+  /* No padding when closed so there's no visual gap */
+  padding: 0 var(--space-md);
+}
+
+/* When open, JS sets max-height inline to the scrollHeight value */
+.accordion__item.is-open .accordion__body {
+  padding-bottom: var(--space-md);
+}
+
+/* =============================================
+   Accordion Answer Text
+   ============================================= */
+.accordion__answer {
+  font-size: 0.97rem;
+  color: var(--clr-text-light);
+  line-height: 1.75;
+  padding-top: var(--space-xs);
+  border-top: 1px solid var(--clr-border);
+}
+
+/* =============================================
+   Page Footer
+   ============================================= */
+.page-footer {
+  margin-top: auto;
+  padding-top: var(--space-lg);
+  font-size: 0.85rem;
+  color: var(--clr-text-light);
+  text-align: center;
+}
+
+/* =============================================
+   Responsive – Mobile (≤ 480px)
+   ============================================= */
+@media (max-width: 480px) {
+  .page-wrapper {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .accordion__trigger {
+    font-size: 0.95rem;
+    padding: var(--space-sm);
+  }
+
+  .accordion__body {
+    padding: 0 var(--space-sm);
+  }
+
+  .accordion__item.is-open .accordion__body {
+    padding-bottom: var(--space-sm);
+  }
+
+  .accordion__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 1rem;
+  }
+}

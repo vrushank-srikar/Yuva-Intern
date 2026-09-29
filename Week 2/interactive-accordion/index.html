@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ – Interactive Accordion</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Fallback: show answers when JavaScript is disabled -->
+  <noscript>
+    <style>
+      .accordion__body { display: block !important; max-height: none !important; }
+      .accordion__icon { display: none; }
+    </style>
+  </noscript>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ===== Page Header ===== -->
+    <header class="page-header">
+      <h1 class="page-header__title">Frequently Asked Questions</h1>
+      <p class="page-header__subtitle">
+        Find quick answers to the most common questions below.
+      </p>
+    </header>
+
+    <!-- ===== Accordion ===== -->
+    <main>
+      <section
+        class="accordion"
+        id="faq"
+        aria-label="Frequently Asked Questions"
+      >
+
+        <!-- Item 1 -->
+        <div class="accordion__item">
+          <h2 class="accordion__heading">
+            <button
+              class="accordion__trigger"
+              id="btn-1"
+              aria-expanded="false"
+              aria-controls="panel-1"
+            >
+              <span class="accordion__question">What is this website?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div
+            class="accordion__body"
+            id="panel-1"
+            role="region"
+            aria-labelledby="btn-1"
+          >
+            <p class="accordion__answer">
+              This is PrepMaster — a free interview preparation platform built for
+              students and developers. It offers curated question banks, AI-powered
+              mock interview sessions, and progress tracking tools to help you land
+              your dream job faster.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="accordion__item">
+          <h2 class="accordion__heading">
+            <button
+              class="accordion__trigger"
+              id="btn-2"
+              aria-expanded="false"
+              aria-controls="panel-2"
+            >
+              <span class="accordion__question">How does it work?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div
+            class="accordion__body"
+            id="panel-2"
+            role="region"
+            aria-labelledby="btn-2"
+          >
+            <p class="accordion__answer">
+              Simply create a free account and choose your target role or company.
+              The platform will generate a personalised study plan for you. You can
+              then practice questions, take AI mock interviews, and review detailed
+              feedback — all in one place, at your own pace.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="accordion__item">
+          <h2 class="accordion__heading">
+            <button
+              class="accordion__trigger"
+              id="btn-3"
+              aria-expanded="false"
+              aria-controls="panel-3"
+            >
+              <span class="accordion__question">Is it free to use?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div
+            class="accordion__body"
+            id="panel-3"
+            role="region"
+            aria-labelledby="btn-3"
+          >
+            <p class="accordion__answer">
+              Yes — the core features of PrepMaster are completely free. This
+              includes access to 500+ practice questions, basic progress tracking,
+              and one AI mock interview session per week. A premium plan is
+              available for users who want unlimited sessions and advanced analytics.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="accordion__item">
+          <h2 class="accordion__heading">
+            <button
+              class="accordion__trigger"
+              id="btn-4"
+              aria-expanded="false"
+              aria-controls="panel-4"
+            >
+              <span class="accordion__question">Can I use it on mobile?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div
+            class="accordion__body"
+            id="panel-4"
+            role="region"
+            aria-labelledby="btn-4"
+          >
+            <p class="accordion__answer">
+              Absolutely. PrepMaster is fully responsive and works seamlessly on
+              smartphones, tablets, and desktops. The interface is touch-friendly
+              and optimised for smaller screens, so you can practise on the go
+              without any issues.
+            </p>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="accordion__item">
+          <h2 class="accordion__heading">
+            <button
+              class="accordion__trigger"
+              id="btn-5"
+              aria-expanded="false"
+              aria-controls="panel-5"
+            >
+              <span class="accordion__question">How can I contact support?</span>
+              <span class="accordion__icon" aria-hidden="true">+</span>
+            </button>
+          </h2>
+          <div
+            class="accordion__body"
+            id="panel-5"
+            role="region"
+            aria-labelledby="btn-5"
+          >
+            <p class="accordion__answer">
+              You can reach our support team by emailing
+              <strong>support@prepmaster.io</strong>. We typically respond within
+              24 hours on business days. You can also use the live chat button on
+              the bottom-right corner of the page, or visit our Help Center for
+              self-service articles and guides.
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="page-footer">
+      <p>&copy; 2026 PrepMaster. All rights reserved.</p>
+    </footer>
+
+  </div><!-- /page-wrapper -->
+
+  <script src="script.js"></script>
+</body>
+</html>
