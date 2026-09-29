@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student Dashboard showing subject marks, attendance, and performance summary for academic tracking." />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Student Dashboard – PrepMaster</title>
+
+  <!-- Performance: preload stylesheet -->
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========================================================
+       SKIP LINK — keyboard users jump past header
+       ======================================================== -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- ========================================================
+       HEADER
+       ======================================================== -->
+  <header class="header" role="banner">
+    <div class="container header__inner">
+
+      <!-- Logo / title -->
+      <a href="#" class="logo" aria-label="Student Dashboard – home">
+        📊 <span>Student Dashboard</span>
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="nav" aria-label="Primary navigation">
+        <ul class="nav__list" role="list">
+          <li><a class="nav__link nav__link--active" href="#">Overview</a></li>
+          <li><a class="nav__link" href="#subjects">Subjects</a></li>
+          <li><a class="nav__link" href="#chart">Chart</a></li>
+        </ul>
+      </nav>
+
+      <!-- Hamburger (visible on mobile) -->
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
+      >
+        <span class="hamburger__bar" aria-hidden="true"></span>
+        <span class="hamburger__bar" aria-hidden="true"></span>
+        <span class="hamburger__bar" aria-hidden="true"></span>
+      </button>
+
+    </div>
+
+    <!-- Mobile menu -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <ul class="mobile-menu__list" role="list">
+        <li><a class="mobile-menu__link" href="#">Overview</a></li>
+        <li><a class="mobile-menu__link" href="#subjects">Subjects</a></li>
+        <li><a class="mobile-menu__link" href="#chart">Chart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ========================================================
+       MAIN CONTENT
+       ======================================================== -->
+  <main id="main-content">
+
+    <!-- ===== PAGE TITLE ===== -->
+    <section class="page-title-section" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title" class="page-title">Academic Overview</h1>
+        <p class="page-subtitle">Track your marks, attendance, and assignment completion.</p>
+      </div>
+    </section>
+
+    <!-- ===== SUMMARY CARDS ===== -->
+    <section class="cards-section" aria-labelledby="cards-heading">
+      <div class="container">
+        <h2 class="sr-only" id="cards-heading">Summary Statistics</h2>
+
+        <!-- aria-live: screen reader announces when values update after data loads -->
+        <div class="cards-grid" id="cards-grid" aria-live="polite" aria-atomic="false">
+
+          <div class="summary-card" aria-label="Total Subjects">
+            <div class="summary-card__icon" aria-hidden="true">📚</div>
+            <div class="summary-card__body">
+              <span class="summary-card__label">Total Subjects</span>
+              <span class="summary-card__value" id="card-total">—</span>
+            </div>
+          </div>
+
+          <div class="summary-card" aria-label="Average Marks">
+            <div class="summary-card__icon" aria-hidden="true">🎯</div>
+            <div class="summary-card__body">
+              <span class="summary-card__label">Average Marks</span>
+              <span class="summary-card__value" id="card-avg">—</span>
+            </div>
+          </div>
+
+          <div class="summary-card" aria-label="Average Attendance">
+            <div class="summary-card__icon" aria-hidden="true">📅</div>
+            <div class="summary-card__body">
+              <span class="summary-card__label">Avg. Attendance</span>
+              <span class="summary-card__value" id="card-attendance">—</span>
+            </div>
+          </div>
+
+          <div class="summary-card" aria-label="Assignments Completed">
+            <div class="summary-card__icon" aria-hidden="true">✅</div>
+            <div class="summary-card__body">
+              <span class="summary-card__label">Assignments Done</span>
+              <span class="summary-card__value" id="card-assignments">—</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUBJECT TABLE + FILTER ===== -->
+    <section class="table-section" id="subjects" aria-labelledby="table-heading">
+      <div class="container">
+
+        <div class="table-header">
+          <h2 class="section__heading" id="table-heading">Subject Performance</h2>
+
+          <!-- Filter control -->
+          <div class="filter-group">
+            <label class="filter-group__label" for="filter-select">Filter by status:</label>
+            <select class="filter-select" id="filter-select" aria-controls="subject-tbody">
+              <option value="all">All Subjects</option>
+              <option value="Passed">Passed</option>
+              <option value="Failed">Failed</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Filter result announcement -->
+        <p
+          class="filter-status"
+          id="filter-status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></p>
+
+        <!-- Responsive table wrapper prevents horizontal scroll -->
+        <div class="table-wrapper" role="region" aria-label="Subject data table" tabindex="0">
+          <table class="data-table" aria-describedby="table-heading">
+            <thead>
+              <tr>
+                <th scope="col">Subject</th>
+                <th scope="col">Marks <span class="th-sub">/ 100</span></th>
+                <th scope="col">Attendance <span class="th-sub">%</span></th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody id="subject-tbody">
+              <!-- Rows injected by JavaScript -->
+              <tr>
+                <td colspan="4" class="table-loading">Loading data…</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== MARKS CHART ===== -->
+    <section class="chart-section" id="chart" aria-labelledby="chart-heading">
+      <div class="container">
+
+        <h2 class="section__heading" id="chart-heading">Marks Chart</h2>
+        <p class="section__subheading">Bar height represents marks out of 100.</p>
+
+        <!-- Pure CSS/HTML bar chart — no library -->
+        <div class="bar-chart" id="bar-chart" role="img" aria-label="Bar chart showing marks per subject">
+          <!-- Bars injected by JavaScript -->
+        </div>
+
+        <!-- Y-axis labels -->
+        <div class="chart-yaxis" aria-hidden="true">
+          <span>100</span>
+          <span>75</span>
+          <span>50</span>
+          <span>25</span>
+          <span>0</span>
+        </div>
+
+        <!-- Pass threshold line label -->
+        <p class="chart-threshold-label" aria-hidden="true">
+          — Pass threshold (50)
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <p class="footer__copy">
+        &copy; 2026 PrepMaster Student Dashboard. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Performance: defer keeps script off the critical path -->
+  <script src="script.js" defer></script>
+</body>
+</html>

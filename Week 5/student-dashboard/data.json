@@ -1,0 +1,38 @@
+[
+  {
+    "subject": "Mathematics",
+    "marks": 88,
+    "attendance": 94,
+    "status": "Passed"
+  },
+  {
+    "subject": "Physics",
+    "marks": 72,
+    "attendance": 86,
+    "status": "Passed"
+  },
+  {
+    "subject": "Chemistry",
+    "marks": 45,
+    "attendance": 60,
+    "status": "Failed"
+  },
+  {
+    "subject": "Computer Science",
+    "marks": 95,
+    "attendance": 98,
+    "status": "Passed"
+  },
+  {
+    "subject": "English",
+    "marks": 38,
+    "attendance": 55,
+    "status": "Failed"
+  },
+  {
+    "subject": "History",
+    "marks": 79,
+    "attendance": 88,
+    "status": "Passed"
+  }
+]
