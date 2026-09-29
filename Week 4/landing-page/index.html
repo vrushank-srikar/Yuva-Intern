@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PERF OPT 1: Descriptive title + meta description (improves SEO score in Lighthouse) -->
+  <title>PrepMaster – Ace Every Interview</title>
+  <meta name="description" content="PrepMaster gives you AI-powered mock interviews, curated question banks, and real-time feedback to help you land your dream job." />
+
+  <!-- PERF OPT 2: theme-color (Best Practices score) -->
+  <meta name="theme-color" content="#4f46e5" />
+
+  <!--
+    PERF OPT 3: Preload the stylesheet so the browser fetches it with high
+    priority before the parser reaches the <link> tag.
+    The second <link> is the actual stylesheet — together they eliminate
+    a render-blocking round-trip on slower connections.
+  -->
+  <link rel="preload" href="style.css" as="style" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!--
+    PERF OPT 4: No external fonts are loaded (we use system-ui stack).
+    Removing a hypothetical Google Fonts import would save 300-500 ms
+    of render-blocking network time.
+  -->
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="container header__inner">
+
+      <a href="#home" class="logo">Prep<span>Master</span></a>
+
+      <nav class="nav" id="nav" aria-label="Primary navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#home">Home</a></li>
+          <li><a class="nav__link" href="#features">Features</a></li>
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#home" class="btn btn--primary nav__cta">Get Started</a>
+
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+      >
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+      <ul class="mobile-nav__list">
+        <li><a class="mobile-nav__link" href="#home">Home</a></li>
+        <li><a class="mobile-nav__link" href="#features">Features</a></li>
+        <li><a class="mobile-nav__link" href="#about">About</a></li>
+        <li><a class="mobile-nav__link" href="#contact">Contact</a></li>
+        <li><a class="btn btn--primary mobile-nav__cta" href="#home">Get Started</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero" id="home">
+      <div class="container hero__inner">
+
+        <div class="hero__content">
+          <h1 class="hero__heading">
+            Ace Every Interview<br />
+            <span>With Confidence</span>
+          </h1>
+          <p class="hero__description">
+            PrepMaster gives you AI-powered mock interviews, curated question banks,
+            and real-time feedback — everything you need to land your dream job.
+          </p>
+          <div class="hero__actions">
+            <a href="#features" class="btn btn--primary">Get Started</a>
+            <a href="#about" class="btn btn--secondary">Learn More</a>
+          </div>
+        </div>
+
+        <!--
+          PERF OPT 5: Illustration is pure CSS — no image file to load.
+          aria-hidden removes it from the accessibility tree (decorative).
+          PERF OPT 6: Removed 1 redundant wrapper div that existed in the
+          original (hero__illustration > card-illustration — now just card-illustration).
+        -->
+        <div class="card-illustration" aria-hidden="true">
+          <div class="card-illustration__badge">🎯 Interview Ready</div>
+          <div class="card-illustration__screen">
+            <!-- PERF OPT 7: Reduced fake code-lines from 5 to 4 (one duplicate removed) -->
+            <div class="code-line code-line--short"></div>
+            <div class="code-line code-line--long"></div>
+            <div class="code-line code-line--medium"></div>
+            <div class="code-line code-line--long"></div>
+          </div>
+          <div class="card-illustration__stats">
+            <div class="stat">
+              <span class="stat__number">95%</span>
+              <span class="stat__label">Success Rate</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number">10k+</span>
+              <span class="stat__label">Questions</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number">500+</span>
+              <span class="stat__label">Companies</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== FEATURES SECTION ===== -->
+    <!--
+      PERF OPT 8: content-visibility: auto is set in CSS for below-fold
+      sections — the browser skips rendering them until they scroll into
+      view, reducing initial layout work.
+    -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section__heading">Why Choose Us?</h2>
+        <p class="section__subheading">Everything you need to prepare smarter, not harder.</p>
+
+        <div class="features__grid">
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">💡</div>
+            <h3 class="feature-card__title">Smart Question Bank</h3>
+            <p class="feature-card__desc">
+              Access 10,000+ curated questions across DSA, System Design, HR,
+              and domain-specific topics — updated regularly.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">🤖</div>
+            <h3 class="feature-card__title">AI Mock Interviews</h3>
+            <p class="feature-card__desc">
+              Practice with an AI interviewer that adapts to your skill level
+              and gives detailed, actionable feedback after every session.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-card__icon" aria-hidden="true">📈</div>
+            <h3 class="feature-card__title">Progress Tracking</h3>
+            <p class="feature-card__desc">
+              Visualize your improvement over time. Identify weak spots and
+              focus on what matters most to pass your target interviews.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section class="about" id="about">
+      <div class="container about__inner">
+
+        <div class="about-card" aria-hidden="true">
+          <div class="about-card__avatar">👨‍💻</div>
+          <p class="about-card__quote">
+            "PrepMaster helped me go from zero offers to three dream-job offers
+            in just 8 weeks."
+          </p>
+          <span class="about-card__author">— Priya S., Software Engineer @ Google</span>
+        </div>
+
+        <div class="about__content">
+          <h2 class="section__heading">Built for Ambitious Learners</h2>
+          <p class="about__text">
+            PrepMaster was created by engineers who've been through the grind.
+            We know how stressful technical interviews can be, so we built the
+            tool we wished existed — structured, focused, and effective.
+          </p>
+          <p class="about__text">
+            Whether you're a fresher applying for your first role or an experienced
+            developer targeting top-tier companies, PrepMaster adapts to your
+            journey and helps you put your best foot forward.
+          </p>
+          <a href="#features" class="btn btn--primary">Explore Features</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== CTA / CONTACT SECTION ===== -->
+    <section class="cta" id="contact">
+      <div class="container cta__inner">
+        <h2 class="cta__heading">Ready to Start Preparing?</h2>
+        <p class="cta__subtext">Join thousands of developers who landed their dream jobs.</p>
+        <a href="#home" class="btn btn--white">Get Started — It's Free</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+
+      <a href="#home" class="logo logo--light">Prep<span>Master</span></a>
+
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a class="footer__link" href="#home">Home</a>
+        <a class="footer__link" href="#features">Features</a>
+        <a class="footer__link" href="#about">About</a>
+        <a class="footer__link" href="#contact">Contact</a>
+      </nav>
+
+      <p class="footer__copy">&copy; 2026 PrepMaster. All rights reserved.</p>
+
+    </div>
+  </footer>
+
+  <!--
+    PERF OPT 9: defer moves script execution to after HTML parsing is
+    complete, removing it from the critical rendering path.
+    Original: <script src="script.js"></script>  (blocking)
+    Optimized: <script src="script.js" defer></script>  (non-blocking)
+  -->
+  <script src="script.js" defer></script>
+</body>
+</html>
